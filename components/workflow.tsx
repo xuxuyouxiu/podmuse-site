@@ -85,7 +85,7 @@ function TranscriptDecrypt({ on = false }: { on?: boolean }) {
         revealDirection="start"
         useOriginalCharsOnly
         characters="▁▂▃▄▅▆▇█▒░"
-        className="max-w-[840px] text-center text-[30px] font-medium leading-relaxed tracking-tight text-ink"
+        className="max-w-[92vw] text-center text-[21px] font-medium leading-relaxed tracking-tight text-ink sm:text-[30px]"
       />
       <div className="flex h-14 items-center gap-[6px]" aria-hidden>
         {[35, 60, 45, 85, 55, 75, 40, 90, 65, 50, 80, 45, 70, 55, 95, 40].map((h, i) => (
@@ -113,8 +113,8 @@ function AiSummary() {
       <div className="mt-1 space-y-3">
         {rows.map(([k, v], i) => (
           <div key={k} className="ai-sum-row flex items-baseline gap-3" style={{ animationDelay: `${0.3 + i * 0.35}s` }}>
-            <span className="w-28 shrink-0 text-right text-[16px] font-semibold text-ink-mute">{k}</span>
-            <span className="text-[24px] font-medium text-ink">{v}</span>
+            <span className="w-20 shrink-0 text-right text-[13px] font-semibold text-ink-mute sm:w-28 sm:text-[16px]">{k}</span>
+            <span className="text-[17px] font-medium text-ink sm:text-[24px]">{v}</span>
           </div>
         ))}
       </div>
@@ -132,7 +132,7 @@ function MiniGraph() {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand/80">知识图谱 · KNOWLEDGE GRAPH</div>
-      <svg viewBox="0 0 224 76" className="h-60 w-[560px]" fill="none" aria-hidden>
+      <svg viewBox="0 0 224 76" className="h-36 w-[310px] sm:h-60 sm:w-[560px]" fill="none" aria-hidden>
         {links.map(([a, b], i) => (
           <line key={i} className="flow-graph-link" x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y}
             stroke="#a855f7" strokeOpacity="0.35" strokeWidth="1.2"
@@ -153,9 +153,9 @@ function NotePaper() {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-brand/80">笔记输出 · NOTES</div>
-      <div className="note-pop w-[430px] rounded-[4px] bg-[#fbfaf7] px-10 py-9 shadow-[0_2px_10px_rgba(50,50,93,0.08),0_20px_44px_-18px_rgba(50,50,93,0.24)]">
+      <div className="note-pop w-[310px] rounded-[4px] bg-[#fbfaf7] px-7 py-7 shadow-[0_2px_10px_rgba(50,50,93,0.08),0_20px_44px_-18px_rgba(50,50,93,0.24)] sm:w-[430px] sm:px-10 sm:py-9">
         <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-mute/70">NOTES</div>
-        <div className="mt-2 text-[26px] font-semibold leading-snug text-ink">一期节目 · 一篇结构化笔记</div>
+        <div className="mt-2 text-[21px] font-semibold leading-snug text-ink sm:text-[26px]">一期节目 · 一篇结构化笔记</div>
         <div className="mt-4 space-y-2.5">
           <div className="h-[2px] w-full rounded-full bg-slate-200" />
           <div className="h-[2px] w-11/12 rounded-full bg-slate-200" />
@@ -177,7 +177,7 @@ function ContentAssets() {
   return (
     <div className="flex flex-col items-center gap-5">
       <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-brand/80">内容资产 · CONTENT ASSETS</div>
-      <div className="flex items-center gap-9">
+      <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-9">
         {/* 图片：CSS 手绘分享卡 */}
         <div className="asset-pop overflow-hidden rounded-[4px] bg-[#fbfaf7] p-3 shadow-[0_2px_10px_rgba(50,50,93,0.08),0_16px_36px_-16px_rgba(50,50,93,0.2)]" style={{ animationDelay: '0.2s' }}>
           <ShareCard size="md" />
@@ -347,50 +347,36 @@ export default function Workflow() {
 
   return (
     <section id="workflow" className="relative border-t border-slate-100">
-      <div className="hidden lg:block">
-        <div ref={ref} className="relative h-[560vh]">
-          <div aria-hidden className="flow-aura absolute left-1/2 top-1/3 h-[420px] w-[760px] -translate-x-1/2 opacity-60" />
-          <div className="sticky top-0 flex h-screen flex-col overflow-hidden pb-7 pt-20">
-            <div className="mx-auto w-full max-w-6xl px-5 md:px-6">
-              <Head />
-            </div>
+      <div ref={ref} className="relative h-[560vh]">
+        <div aria-hidden className="flow-aura absolute left-1/2 top-1/3 h-[420px] w-[760px] -translate-x-1/2 opacity-60" />
+        <div className="sticky top-0 flex h-screen flex-col overflow-hidden pb-7 pt-20">
+          <div className="mx-auto w-full max-w-6xl px-5 md:px-6">
+            <Head />
+          </div>
 
-            {/* 物品舞台：flex-1 顶到底部，边界留两行字距离 */}
-            <div className="relative mx-auto mt-2 flex w-full max-w-6xl flex-1 items-center justify-center px-5 md:px-6">
-              {ITEMS.map((Item, i) => {
-                const on = stage === i
-                const done = stage > i && stage < 7
-                return (
-                  <div
-                    key={i}
-                    className={`absolute transition-all duration-[1100ms] ease-out ${on ? 'item-on opacity-100 scale-100 blur-0' : done ? 'opacity-0 scale-[0.92] blur-[3px]' : 'opacity-0 scale-[0.85] blur-[6px]'}`}
-                  >
-                    <Item on={on} />
-                  </div>
-                )
-              })}
+          {/* 物品舞台：flex-1 顶到底部，边界留两行字距离 */}
+          <div className="relative mx-auto mt-2 flex w-full max-w-6xl flex-1 items-center justify-center px-5 md:px-6">
+            {ITEMS.map((Item, i) => {
+              const on = stage === i
+              const done = stage > i && stage < 7
+              return (
+                <div
+                  key={i}
+                  className={`absolute transition-all duration-[1100ms] ease-out ${on ? 'item-on opacity-100 scale-100 blur-0' : done ? 'opacity-0 scale-[0.92] blur-[3px]' : 'opacity-0 scale-[0.85] blur-[6px]'}`}
+                >
+                  <Item on={on} />
+                </div>
+              )
+            })}
 
-              {/* 画廊收束（最后一段：5 个产出物从左往右，滚到才挂载） */}
-              {stage >= 7 && (
-                <div className="absolute opacity-100 scale-100">
+            {/* 画廊收束（最后一段：5 个产出物从左往右，滚到才挂载） */}
+            {stage >= 7 && (
+              <div className="absolute opacity-100 scale-100">
+                <div className="max-w-[92vw] overflow-x-auto px-2 pb-2 lg:max-w-none lg:overflow-visible">
                   <Gallery />
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 小屏：垂直列表 */}
-      <div className="lg:hidden">
-        <div className="py-20">
-          <Head />
-          <div className="mx-auto mt-10 flex max-w-xs flex-col items-center gap-8 px-5">
-            {ITEMS.map((Item, i) => (
-              <div key={i}>
-                <Item />
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>

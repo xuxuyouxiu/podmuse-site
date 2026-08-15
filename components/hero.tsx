@@ -67,7 +67,7 @@ function WorkspaceShot() {
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -left-5 -top-5 z-10 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-[0_2px_6px_rgba(50,50,93,0.08),0_12px_24px_-8px_rgba(50,50,93,0.14)] md:-left-8"
+        className="absolute -top-5 left-2 z-10 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-[0_2px_6px_rgba(50,50,93,0.08),0_12px_24px_-8px_rgba(50,50,93,0.14)] sm:-left-5 md:-left-8"
       >
         <div className="text-[11px] font-medium text-ink-mute">识别平台</div>
         <div className="text-[13px] font-semibold text-brand">抖音 · B站 · 小宇宙 · YouTube</div>
@@ -252,7 +252,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="mt-6 text-[52px] font-semibold leading-[1.06] tracking-tight md:text-[68px]"
+            className="mt-6 text-[34px] font-semibold leading-[1.06] tracking-tight sm:text-[44px] md:text-[68px]"
           >
             把播客，
             <br />
@@ -264,7 +264,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.16 }}
-            className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft"
+            className="mt-5 max-w-md text-base leading-relaxed text-ink-soft sm:text-lg"
           >
             粘贴一条链接，AI 自动转写、提炼、结构化——让每一期节目都沉淀为可复用、可互链的知识资产。
           </motion.p>
@@ -272,7 +272,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.24 }}
-            className="mt-7 flex items-center gap-3"
+            className="mt-7 flex flex-wrap items-center gap-3"
           >
             <a
               href={setupUrl}

@@ -375,7 +375,7 @@ export default function Journey() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 grid w-full max-w-6xl items-center gap-2 px-5 md:grid-cols-[minmax(565px,1fr)_auto_auto] md:px-6">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-6 px-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.95fr)_minmax(0,0.8fr)] lg:gap-4 lg:px-6">
         {/* 左：App 窗口（滚轮驱动 8 阶段切换） */}
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_2px_6px_rgba(50,50,93,0.08),0_18px_40px_-8px_rgba(50,50,93,0.16)]">
           <div className="flex items-center gap-1.5 border-b border-slate-100 px-4 py-3">
