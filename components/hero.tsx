@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Download, ArrowDown } from 'lucide-react'
+import { Download, ArrowDown, BookMarked, LayoutDashboard, Rss, History, Network, Search, MessageCircle, Settings } from 'lucide-react'
 import { useLatestSetupUrl } from './latest-setup'
 
 /** 知识节点连线 SVG（Hero 背景装饰，轻） */
@@ -53,13 +53,13 @@ function KnowledgeNodes() {
 /** 迷你工作台：1:1 模拟真实 PodMuse 界面（浅色主题，真实 tokens，放大版） */
 function WorkspaceShot() {
   const sideItems = [
-    { label: '笔记库', active: false },
-    { label: '工作台', active: true },
-    { label: '订阅', active: false },
-    { label: '历史', active: false },
-    { label: '知识关联', active: false },
-    { label: '搜索', active: false },
-    { label: '问答', active: false },
+    { label: '笔记库', icon: BookMarked, active: false },
+    { label: '工作台', icon: LayoutDashboard, active: true },
+    { label: '订阅', icon: Rss, active: false },
+    { label: '历史', icon: History, active: false },
+    { label: '知识关联', icon: Network, active: false },
+    { label: '搜索', icon: Search, active: false },
+    { label: '问答', icon: MessageCircle, active: false },
   ]
   return (
     <div className="relative mx-auto w-full max-w-[560px] xl:mx-0">
@@ -101,10 +101,10 @@ function WorkspaceShot() {
                     : 'text-[#52525b]'
                 }`}
               >
-                <span
-                  className={`h-4 w-4 rounded ${
-                    item.active ? 'bg-[#7c3aed]/30' : 'bg-slate-200'
-                  }`}
+                <item.icon
+                  size={14}
+                  strokeWidth={item.active ? 2.2 : 1.8}
+                  className={item.active ? 'text-[#7c3aed]' : 'text-slate-400'}
                 />
                 {item.label}
               </div>
@@ -127,7 +127,10 @@ function WorkspaceShot() {
               </div>
             </div>
             <div className="mt-2.5 border-t border-black/5 pt-2">
-              <div className="rounded-lg px-2.5 py-1.5 text-[12px] text-[#52525b]">设置</div>
+              <div className="flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[12px] text-[#52525b]">
+                <Settings size={14} strokeWidth={1.8} className="text-slate-400" />
+                设置
+              </div>
             </div>
           </div>
           {/* 主区（真实 workspace 结构） */}
