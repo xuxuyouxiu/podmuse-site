@@ -216,7 +216,7 @@ function WorkspaceShot() {
 }
 
 export default function Hero() {
-  const setupUrl = useLatestSetupUrl()
+  const { url: setupUrl } = useLatestSetupUrl()
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,

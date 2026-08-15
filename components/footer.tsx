@@ -38,7 +38,7 @@ const buildGroups = (setupUrl: string): { title: string; links: FooterLink[] }[]
 ]
 
 export default function Footer() {
-  const setupUrl = useLatestSetupUrl()
+  const { url: setupUrl } = useLatestSetupUrl()
   const groups = buildGroups(setupUrl)
 
   return (

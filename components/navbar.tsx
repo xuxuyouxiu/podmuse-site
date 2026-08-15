@@ -14,7 +14,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const setupUrl = useLatestSetupUrl()
+  const { url: setupUrl } = useLatestSetupUrl()
 
   useEffect(() => {
     const onScroll = () => {

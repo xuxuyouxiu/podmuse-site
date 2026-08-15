@@ -9,7 +9,7 @@ import { useLatestSetupUrl } from './latest-setup'
  * 汇入笔记预览卡 → 从双出口（宣传图片 / PDF）发布/归档。
  */
 export default function ExportStudio() {
-  const setupUrl = useLatestSetupUrl()
+  const { url: setupUrl, mirrorUrl } = useLatestSetupUrl()
   return (
     <section id="download" className="flex min-h-screen snap-start flex-col justify-center border-t border-slate-100 py-20">
       <div className="mx-auto w-full max-w-6xl px-5 md:px-6">
@@ -149,6 +149,12 @@ export default function ExportStudio() {
             免费下载 PodMuse
           </a>
           <p className="mt-3 text-xs text-ink-mute">Windows · 个人使用永久免费 · 开源 · 数据 100% 本地</p>
+          <a
+            href={mirrorUrl}
+            className="mt-2 inline-block text-xs text-ink-mute underline decoration-slate-300 underline-offset-4 transition-colors hover:text-brand"
+          >
+            下载慢？点这里走国内加速通道
+          </a>
         </motion.div>
       </div>
     </section>
