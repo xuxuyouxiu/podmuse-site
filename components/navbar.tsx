@@ -17,7 +17,11 @@ export default function Navbar() {
   const setupUrl = useLatestSetupUrl()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 64)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 64)
+      // 手机菜单：页面滚动时自动收起
+      if (window.scrollY > 8) setMenuOpen(false)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -26,13 +30,13 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 z-50 px-4 transition-[margin-top] duration-300 ease-out ${
-        scrolled ? 'mt-3' : 'mt-0'
+        scrolled ? 'md:mt-3' : 'md:mt-0'
       }`}
     >
       <nav
-        className={`mx-auto flex h-14 max-w-6xl items-center justify-between px-5 md:px-6 ${
+        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-none px-5 md:rounded-2xl md:px-6 ${
           scrolled || menuOpen
-            ? 'rounded-2xl bg-white/95 shadow-[0_2px_8px_rgba(50,50,93,0.06),0_12px_28px_-8px_rgba(50,50,93,0.12)]'
+            ? 'bg-white/95 shadow-[0_2px_8px_rgba(50,50,93,0.06),0_12px_28px_-8px_rgba(50,50,93,0.12)] md:rounded-2xl'
             : 'bg-transparent'
         }`}
       >
