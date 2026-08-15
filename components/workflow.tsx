@@ -219,7 +219,7 @@ function OutputPiece({
       initial={{ opacity: 0, y: 22, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.65, delay, ease: [0.22, 0.8, 0.23, 1] }}
-      className={`flex w-[160px] shrink-0 flex-col lg:w-[210px] ${tall ? 'col-span-2 justify-self-center lg:col-span-1' : ''}`}
+      className={`flex w-[160px] shrink-0 flex-col lg:w-[210px] ${tall ? 'lg:col-span-1' : ''}`}
     >
       <div className="mb-1 text-center text-[12px] font-extrabold uppercase tracking-[2.5px] text-ink-mute">{label}</div>
       <div className={`flex items-center justify-center rounded-xl border border-brand/16 bg-white/70 shadow-[0_15px_30px_rgba(88,61,171,0.07),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-sm ${tall ? 'h-[210px] lg:h-[240px]' : 'h-[150px] lg:h-[240px]'}`}>
@@ -231,7 +231,7 @@ function OutputPiece({
 
 function Gallery() {
   return (
-    <div className="grid w-full grid-cols-2 gap-x-4 gap-y-5 px-4 lg:flex lg:flex-row lg:items-stretch lg:gap-6 lg:px-0">
+    <div className="mx-auto flex max-h-[calc(100vh-240px)] w-full max-w-[360px] flex-col items-center gap-4 overflow-y-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:max-h-none lg:w-auto lg:max-w-none lg:flex-row lg:items-stretch lg:gap-6 lg:overflow-visible lg:px-0">
       {/* Obsidian：实体关系图谱 */}
       <OutputPiece label="OBSIDIAN" delay={0.1}>
         <svg viewBox="0 0 190 150" className="h-full w-full p-4" aria-hidden>
@@ -371,9 +371,9 @@ export default function Workflow() {
               )
             })}
 
-            {/* 画廊收束（第 7 段：物品消失后原位展示） */}
+            {/* 画廊收束（第 7 段：物品消失后原位展示，垂直居中） */}
             {stage >= 7 && (
-              <div className="absolute opacity-100 scale-100">
+              <div className="absolute inset-x-0 top-1/2 z-10 -translate-y-1/2">
                 <Gallery />
               </div>
             )}
