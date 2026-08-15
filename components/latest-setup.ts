@@ -13,6 +13,12 @@ const LATEST_YML =
 const API =
   'https://api.github.com/repos/xuxuyouxiu/PodMuse/releases/latest'
 const FALLBACK = 'https://github.com/xuxuyouxiu/PodMuse/releases/latest'
+// GitHub 加速镜像（国内可直连，点击即下载安装包文件）
+const MIRRORS = [
+  'https://ghfast.top/',
+  'https://gh-proxy.com/',
+  'https://ghproxy.net/',
+]
 
 export function useLatestSetupUrl(): string {
   const [url, setUrl] = useState(FALLBACK)
@@ -34,8 +40,8 @@ export function useLatestSetupUrl(): string {
           ?.split(':')[1]
           ?.trim()
         if (!version || !path) return Promise.reject()
-        if (alive)
-          setUrl(`https://github.com/xuxuyouxiu/PodMuse/releases/download/v${version}/${path}`)
+        const direct = `https://github.com/xuxuyouxiu/PodMuse/releases/download/v${version}/${path}`
+        if (alive) setUrl(`${MIRRORS[0]}${direct}`) // 镜像直下安装包
         return undefined
       })
       .catch(() =>
@@ -45,7 +51,8 @@ export function useLatestSetupUrl(): string {
             const exe = (d.assets as Array<{ name: string; browser_download_url: string }>).find(
               a => a.name.endsWith('.exe') && !a.name.endsWith('.blockmap')
             )
-            if (exe?.browser_download_url && alive) setUrl(exe.browser_download_url)
+            if (exe?.browser_download_url && alive)
+              setUrl(`${MIRRORS[0]}${exe.browser_download_url}`)
           })
           .catch(() => {})
       )
