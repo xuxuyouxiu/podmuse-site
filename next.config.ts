@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  output: 'export',
+  allowedDevOrigins: ['127.0.0.1', 'localhost'],
+  images: { unoptimized: true },
+  trailingSlash: true,
+}
 
-export default nextConfig;
+export default nextConfig
