@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useMotionValueEvent, useScroll } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import OptionWheel from './option-wheel'
 import ScrollReveal from './scroll-reveal'
 
@@ -330,38 +330,16 @@ const STEPS = [
 ]
 
 export default function Journey() {
-  const sectionRef = useRef<HTMLElement>(null)
   const [stage, setStage] = useState(1)
-  // sticky 是否固定（板块顶部已到视口顶、且未滚完）——只有固定期间滚轮才接管滚动
-  const [stickyActive, setStickyActive] = useState(false)
 
+  // 只由用户交互驱动：滚轮/标签点击才切换（滚动页面不自动变化）
   const wheelToStage = (idx: number) => {
-    // 滚轮交互：切阶段 + 同步滚动页面到对应位置（两边永远一致，不会脱节）
     setStage(idx + 1)
-    const top = sectionRef.current?.offsetTop ?? 0
-    const bufferV = 0.08
-    const vc = idx === 0 ? 0 : bufferV + (idx / 7) * (1 - bufferV)
-    window.scrollTo({ top: top + vc * window.innerHeight, behavior: 'smooth' })
   }
 
-  // 页面滚动驱动（sticky 固定屏贯穿 200vh）
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  })
-  useMotionValueEvent(scrollYProgress, 'change', v => {
-    // 用 framer 的进度 v（0=板块顶部刚进视口，1=板块滚完）直接映射阶段：
-    // 数学上 v=1 必然对应第 8 阶段，不存在"够不着最后一项"的问题
-    const vc = Math.min(1, Math.max(0, v))
-    setStickyActive(v > 0.005 && v < 0.999)
-    const bufferV = 0.08 // 8% 进度缓冲：消化上游惯性，进入时先停在阶段 1
-    const p = vc <= bufferV ? 0 : (vc - bufferV) / (1 - bufferV)
-    setStage(Math.min(7, Math.floor(p * 7) + 1))
-  })
-
   return (
-    <section id="journey" ref={sectionRef} className="relative overflow-x-clip border-t border-slate-100 lg:h-[200vh]">
-      <div className="flex min-h-screen flex-col pt-20 pb-7 lg:sticky lg:top-0 lg:h-screen">
+    <section id="journey" className="relative flex min-h-screen flex-col justify-center overflow-x-clip border-t border-slate-100 py-20">
+      <div className="mx-auto w-full max-w-6xl px-5 lg:px-6">
         {/* 顶部居中标题（与「完整链路」板块同格式） */}
         <div className="mx-auto w-full max-w-6xl px-5 md:px-6">
           <div className="mx-auto max-w-2xl text-center">
@@ -404,7 +382,18 @@ export default function Journey() {
               ))}
             </div>
             <div className="h-[420px] flex-1 overflow-hidden p-4">
-              <StagePanel stage={stage} />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={stage}
+                  initial={{ opacity: 0, y: 26, scale: 0.975 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.975 }}
+                  transition={{ duration: 0.42, ease: [0.22, 0.8, 0.23, 1] }}
+                  className="h-full"
+                >
+                  <StagePanel stage={stage} />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -433,7 +422,6 @@ export default function Journey() {
             defaultSelected={0}
             selected={stage - 1}
             onChange={(idx: number) => wheelToStage(idx)}
-            wheelEnabled={stickyActive}
             side="left"
             textColor="#b8aed6"
             activeColor="#7c3aed"
