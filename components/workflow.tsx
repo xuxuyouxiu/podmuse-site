@@ -217,7 +217,7 @@ function OutputPiece({
       initial={{ opacity: 0, y: 22, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.65, delay, ease: [0.22, 0.8, 0.23, 1] }}
-      className="flex w-[210px] flex-col"
+      className="flex w-[210px] shrink-0 snap-center flex-col lg:snap-none"
     >
       <div className="mb-1 text-center text-[12px] font-extrabold uppercase tracking-[2.5px] text-ink-mute">{label}</div>
       <div className="flex h-[240px] items-center justify-center rounded-xl border border-brand/16 bg-white/70 shadow-[0_15px_30px_rgba(88,61,171,0.07),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-sm">
@@ -229,7 +229,7 @@ function OutputPiece({
 
 function Gallery() {
   return (
-    <div className="flex items-stretch gap-6">
+    <div className="flex items-stretch gap-6 overflow-x-auto px-6 pb-3 snap-x snap-mandatory lg:overflow-visible lg:px-0 lg:pb-0 lg:snap-none">
       {/* Obsidian：实体关系图谱 */}
       <OutputPiece label="OBSIDIAN" delay={0.1}>
         <svg viewBox="0 0 190 150" className="h-full w-full p-4" aria-hidden>

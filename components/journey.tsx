@@ -409,8 +409,8 @@ export default function Journey() {
           </div>
         </div>
 
-        {/* 中：Step Story 叙事（字号与滚轮字幕一致，被滚轮弧线"包裹"，右移 200px） */}
-        <div className="relative flex h-[420px] items-center justify-center md:left-[60px]">
+        {/* 中：Step Story 叙事（仅大屏，被滚轮弧线"包裹"） */}
+        <div className="relative hidden h-[420px] items-center justify-center lg:flex lg:left-[60px]">
           <div key={stage} className="max-w-[280px] text-center">
             <ScrollReveal
               playOnce
@@ -426,8 +426,8 @@ export default function Journey() {
           </div>
         </div>
 
-        {/* 右：弧形滚轮（加宽防截断，右移 280px 对齐导航栏右缘附近） */}
-        <div className="relative flex h-[420px] w-[280px] flex-col justify-center md:left-[40px]">
+        {/* 右：弧形滚轮（仅大屏） */}
+        <div className="relative hidden h-[420px] w-[280px] flex-col justify-center lg:flex lg:left-[40px]">
           <OptionWheel
             items={WHEEL_ITEMS}
             defaultSelected={0}
@@ -450,6 +450,22 @@ export default function Journey() {
             draggable
           />
         </div>
+      </div>
+
+      {/* 手机：横向阶段标签（点击切换窗口画面） */}
+      <div className="mx-auto mt-5 flex w-full max-w-6xl gap-2 overflow-x-auto px-5 pb-1 lg:hidden">
+        {WHEEL_ITEMS.map((t, i) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setStage(i + 1)}
+            className={`shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-colors ${
+              stage === i + 1 ? 'bg-brand text-white' : 'bg-slate-100 text-ink-soft'
+            }`}
+          >
+            {t}
+          </button>
+        ))}
       </div>
       </div>
     </section>
