@@ -217,7 +217,7 @@ function OutputPiece({
       initial={{ opacity: 0, y: 22, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.65, delay, ease: [0.22, 0.8, 0.23, 1] }}
-      className="flex w-[210px] shrink-0 snap-center flex-col lg:snap-none"
+      className="flex w-[210px] shrink-0 flex-col"
     >
       <div className="mb-1 text-center text-[12px] font-extrabold uppercase tracking-[2.5px] text-ink-mute">{label}</div>
       <div className="flex h-[240px] items-center justify-center rounded-xl border border-brand/16 bg-white/70 shadow-[0_15px_30px_rgba(88,61,171,0.07),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-sm">
@@ -229,7 +229,7 @@ function OutputPiece({
 
 function Gallery() {
   return (
-    <div className="flex items-stretch gap-6 overflow-x-auto px-6 pb-3 snap-x snap-mandatory lg:overflow-visible lg:px-0 lg:pb-0 lg:snap-none">
+    <div className="flex w-full flex-col items-center gap-6 px-0 pb-0 lg:flex-row lg:items-stretch lg:px-0">
       {/* Obsidian：实体关系图谱 */}
       <OutputPiece label="OBSIDIAN" delay={0.1}>
         <svg viewBox="0 0 190 150" className="h-full w-full p-4" aria-hidden>
@@ -369,15 +369,20 @@ export default function Workflow() {
               )
             })}
 
-            {/* 画廊收束（最后一段：5 个产出物从左往右，滚到才挂载） */}
+            {/* 画廊收束（桌面：sticky 内横排，滚到才挂载） */}
             {stage >= 7 && (
-              <div className="absolute opacity-100 scale-100">
-                <div className="max-w-[92vw] overflow-x-auto px-2 pb-2 lg:max-w-none lg:overflow-visible">
-                  <Gallery />
-                </div>
+              <div className="absolute hidden opacity-100 scale-100 lg:block">
+                <Gallery />
               </div>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* 手机：画廊竖排（sticky 结束后的正常文档流） */}
+      <div className="px-5 pb-16 lg:hidden">
+        <div className="mx-auto flex w-full max-w-[300px] flex-col gap-5">
+          <Gallery />
         </div>
       </div>
     </section>

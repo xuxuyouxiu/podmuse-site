@@ -34,9 +34,9 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-none px-5 md:rounded-2xl md:px-6 ${
+        className={`mx-auto flex h-14 max-w-6xl items-center justify-between rounded-2xl px-5 md:px-6 ${
           scrolled || menuOpen
-            ? 'bg-white/95 shadow-[0_2px_8px_rgba(50,50,93,0.06),0_12px_28px_-8px_rgba(50,50,93,0.12)] md:rounded-2xl'
+            ? 'bg-white/95 shadow-[0_2px_8px_rgba(50,50,93,0.06),0_12px_28px_-8px_rgba(50,50,93,0.12)]'
             : 'bg-transparent'
         }`}
       >

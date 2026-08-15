@@ -452,14 +452,14 @@ export default function Journey() {
         </div>
       </div>
 
-      {/* 手机：横向阶段标签（点击切换窗口画面） */}
-      <div className="mx-auto mt-5 flex w-full max-w-6xl gap-2 overflow-x-auto px-5 pb-1 lg:hidden">
+      {/* 手机：阶段标签（换行排列，无横向滚动） */}
+      <div className="mx-auto mt-5 flex w-full max-w-6xl flex-wrap justify-center gap-2 px-5 pb-1 lg:hidden">
         {WHEEL_ITEMS.map((t, i) => (
           <button
             key={t}
             type="button"
             onClick={() => setStage(i + 1)}
-            className={`shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-colors ${
+            className={`shrink-0 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition-colors ${
               stage === i + 1 ? 'bg-brand text-white' : 'bg-slate-100 text-ink-soft'
             }`}
           >
