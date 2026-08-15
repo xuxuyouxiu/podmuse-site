@@ -207,20 +207,22 @@ function OutputPiece({
   label,
   children,
   delay,
+  tall = false,
 }: {
   label: string
   children: React.ReactNode
   delay: number
+  tall?: boolean
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 22, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.65, delay, ease: [0.22, 0.8, 0.23, 1] }}
-      className="flex w-[210px] shrink-0 flex-col"
+      className={`flex w-[160px] shrink-0 flex-col lg:w-[210px] ${tall ? 'col-span-2 justify-self-center lg:col-span-1' : ''}`}
     >
       <div className="mb-1 text-center text-[12px] font-extrabold uppercase tracking-[2.5px] text-ink-mute">{label}</div>
-      <div className="flex h-[240px] items-center justify-center rounded-xl border border-brand/16 bg-white/70 shadow-[0_15px_30px_rgba(88,61,171,0.07),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-sm">
+      <div className={`flex items-center justify-center rounded-xl border border-brand/16 bg-white/70 shadow-[0_15px_30px_rgba(88,61,171,0.07),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-sm ${tall ? 'h-[210px] lg:h-[240px]' : 'h-[150px] lg:h-[240px]'}`}>
         {children}
       </div>
     </motion.div>
@@ -229,7 +231,7 @@ function OutputPiece({
 
 function Gallery() {
   return (
-    <div className="flex w-full flex-col items-center gap-6 px-0 pb-0 lg:flex-row lg:items-stretch lg:px-0">
+    <div className="grid w-full grid-cols-2 gap-x-4 gap-y-5 px-4 lg:flex lg:flex-row lg:items-stretch lg:gap-6 lg:px-0">
       {/* Obsidian：实体关系图谱 */}
       <OutputPiece label="OBSIDIAN" delay={0.1}>
         <svg viewBox="0 0 190 150" className="h-full w-full p-4" aria-hidden>
@@ -257,30 +259,30 @@ function Gallery() {
       {/* AI Chat */}
       <OutputPiece label="AI CHAT" delay={0.24}>
         <div className="p-3 text-center">
-          <div className="text-[20px] font-bold leading-[1.5] text-ink">
+          <div className="text-[16px] font-bold leading-[1.5] text-ink lg:text-[20px]">
             从原文整理出 <em className="not-italic text-brand">3 个核心结论</em>。
           </div>
-          <div className="mt-1.5 text-[13px] text-ink-mute">自动整理 · 保留来源</div>
+          <div className="mt-1.5 text-[12px] text-ink-mute lg:text-[13px]">自动整理 · 保留来源</div>
         </div>
       </OutputPiece>
       {/* Notes */}
       <OutputPiece label="NOTES" delay={0.38}>
         <div className="w-full p-4">
-          <div className="text-[21px] font-extrabold leading-snug text-ink">一期节目<br />一篇结构化笔记</div>
+          <div className="text-[16px] font-extrabold leading-snug text-ink lg:text-[21px]">一期节目<br />一篇结构化笔记</div>
           <div
-            className="mt-2 h-[80px]"
+            className="mt-2 h-[40px] lg:h-[80px]"
             style={{ background: 'repeating-linear-gradient(180deg, rgba(102,91,120,0.18) 0 1px, transparent 1px 18px)' }}
           />
         </div>
       </OutputPiece>
-      {/* Image：CSS 手绘分享卡 */}
-      <OutputPiece label="IMAGE" delay={0.52}>
+      {/* Image：CSS 手绘分享卡（手机跨两列居中） */}
+      <OutputPiece label="IMAGE" delay={0.52} tall>
         <ShareCard size="sm" />
       </OutputPiece>
       {/* PDF */}
       <OutputPiece label="PDF" delay={0.66}>
-        <div className="flex h-[210px] w-[160px] flex-col justify-between rounded-[3px] bg-white p-4">
-          <div className="text-[19px] font-extrabold text-ink">正式文档</div>
+        <div className="flex h-[150px] w-[150px] flex-col justify-between rounded-[3px] bg-white p-4 lg:h-[210px] lg:w-[160px]">
+          <div className="text-[16px] font-extrabold text-ink lg:text-[19px]">正式文档</div>
           <div className="space-y-3 pb-1">
             <div className="h-px w-full bg-[#5b4f72]/25" />
             <div className="h-px w-full bg-[#5b4f72]/25" />
@@ -369,20 +371,13 @@ export default function Workflow() {
               )
             })}
 
-            {/* 画廊收束（桌面：sticky 内横排，滚到才挂载） */}
+            {/* 画廊收束（第 7 段：物品消失后原位展示） */}
             {stage >= 7 && (
-              <div className="absolute hidden opacity-100 scale-100 lg:block">
+              <div className="absolute opacity-100 scale-100">
                 <Gallery />
               </div>
             )}
           </div>
-        </div>
-      </div>
-
-      {/* 手机：画廊竖排（sticky 结束后的正常文档流） */}
-      <div className="px-5 pb-16 lg:hidden">
-        <div className="mx-auto flex w-full max-w-[300px] flex-col gap-5">
-          <Gallery />
         </div>
       </div>
     </section>
