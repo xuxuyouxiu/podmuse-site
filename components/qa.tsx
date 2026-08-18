@@ -11,7 +11,7 @@ export default function QA() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
           transition={{ duration: 0.55 }}
         >
           <p className="text-xs font-semibold uppercase tracking-widest text-brand">AI 知识问答</p>
@@ -39,7 +39,7 @@ export default function QA() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
           transition={{ duration: 0.55, delay: 0.1 }}
           className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_2px_6px_rgba(50,50,93,0.08),0_18px_40px_-8px_rgba(50,50,93,0.16)]"
         >

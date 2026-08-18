@@ -182,22 +182,7 @@ export default function BalatroBackground({
     const container = containerRef.current
     if (!container) return
 
-    // 无障碍：系统开启“减少动态效果”时不启动 WebGL 动画
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (reducedMotionQuery.matches) return
-
-    // 性能：移动端 / 低性能设备降低渲染分辨率
-    const isMobile = window.matchMedia('(max-width: 768px)').matches
-    const isLowPower =
-      typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4
-    const renderScale = isMobile ? 0.6 : isLowPower ? 0.8 : 1
-
-    const renderer = new Renderer({
-      alpha: true,
-      antialias: false,
-      dpr: renderScale,
-      powerPreference: isMobile || isLowPower ? 'low-power' : 'default',
-    })
+    const renderer = new Renderer({ alpha: true, antialias: false })
     const gl = renderer.gl
     gl.clearColor(0, 0, 0, 0)
 
@@ -244,35 +229,14 @@ export default function BalatroBackground({
     const mesh = new Mesh(gl, { geometry, program })
     let animationFrameId = 0
 
-    const renderFrame = (time: number) => {
+    const update = (time: number) => {
       if (!program) return
+      animationFrameId = requestAnimationFrame(update)
       program.uniforms.iTime.value = time * 0.001
       renderer.render({ scene: mesh })
     }
-
-    const start = () => {
-      if (animationFrameId) return
-      const loop = (time: number) => {
-        renderFrame(time)
-        animationFrameId = requestAnimationFrame(loop)
-      }
-      animationFrameId = requestAnimationFrame(loop)
-    }
-
-    const stop = () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId)
-      animationFrameId = 0
-    }
-
-    // 页面切到后台时暂停，减少耗电
-    const onVisibilityChange = () => {
-      if (document.hidden) stop()
-      else start()
-    }
-    document.addEventListener('visibilitychange', onVisibilityChange)
-
+    animationFrameId = requestAnimationFrame(update)
     container.appendChild(gl.canvas)
-    start()
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!mouseInteraction || !program) return
@@ -284,8 +248,7 @@ export default function BalatroBackground({
     container.addEventListener('mousemove', handleMouseMove)
 
     return () => {
-      stop()
-      document.removeEventListener('visibilitychange', onVisibilityChange)
+      cancelAnimationFrame(animationFrameId)
       window.removeEventListener('resize', resize)
       container.removeEventListener('mousemove', handleMouseMove)
       if (gl.canvas.parentNode === container) container.removeChild(gl.canvas)

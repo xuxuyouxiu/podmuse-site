@@ -23,7 +23,7 @@ export default function ExportStudio({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
           transition={{ duration: 0.55 }}
           className="mx-auto max-w-xl text-center"
         >
@@ -44,7 +44,7 @@ export default function ExportStudio({
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: false, margin: '-60px' }}
             transition={{ duration: 0.6 }}
             className="pointer-events-none absolute -top-10 left-1/2 h-10 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-brand/40 to-brand/70"
           >
@@ -56,7 +56,7 @@ export default function ExportStudio({
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
+              viewport={{ once: false, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.45 }}
               className="order-2 flex justify-center md:order-1"
             >
@@ -76,7 +76,7 @@ export default function ExportStudio({
             <motion.div
               initial={{ opacity: 0, y: 44, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-60px' }}
+              viewport={{ once: false, margin: '-60px' }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="order-1 md:order-2"
             >
@@ -121,7 +121,7 @@ export default function ExportStudio({
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
+              viewport={{ once: false, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.45 }}
               className="order-3 flex justify-center"
             >
@@ -143,7 +143,7 @@ export default function ExportStudio({
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: 0.6, delay: 0.65 }}
           className="mt-16 text-center"
         >

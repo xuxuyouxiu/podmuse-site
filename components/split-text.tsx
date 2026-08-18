@@ -112,7 +112,7 @@ const SplitText: React.FC<SplitTextProps> = ({
               scrollTrigger: {
                 trigger: el,
                 start,
-                once: true,
+                once: false,
                 toggleActions: 'play none none none',
                 fastScrollEnd: true,
                 anticipatePin: 0.4
