@@ -62,7 +62,7 @@ export default function Footer({ setupUrl }: { setupUrl: string }) {
                   <a
                     key={l.label}
                     href={l.href}
-                    data-goatcounter-click={l.label === '下载' ? 'download-footer' : undefined}
+                    data-track-event={l.label === '下载' ? 'download-footer' : undefined}
                     target={l.external ? '_blank' : undefined}
                     rel={l.external ? 'noopener' : undefined}
                     className="block text-sm text-ink-soft transition-colors hover:text-brand"

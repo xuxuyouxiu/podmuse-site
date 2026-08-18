@@ -37,18 +37,13 @@ npm run dev
 | `npm run lint` | ESLint 检查 |
 | `npx tsc --noEmit` | TypeScript 类型检查 |
 
-## 数据统计（可选）
+## 数据统计
 
-使用 [GoatCounter](https://www.goatcounter.com/)（免费、隐私友好）。
+使用百度统计（Baidu Tongji），统计脚本随官网一起加载。
 
-启用方式：在构建环境中设置环境变量：
-
-```bash
-NEXT_PUBLIC_GOATCOUNTER=https://your-name.goatcounter.com/count
-```
-
-- 未设置时不会加载任何统计脚本，不影响页面性能。
-- 下载按钮已埋点：`download-hero`、`download-navbar`、`download-navbar-mobile`、`download-main`、`download-mirror`、`download-footer`。
+- 站点 ID：`47c3d20d16483b897729f4ed49bc87fd`
+- 下载按钮已埋点：`download-hero`、`download-navbar`、`download-navbar-mobile`、`download-main`、`download-mirror`、`download-footer`
+- 点击事件通过 `data-track-event` 属性触发，统一上报到百度统计的“下载”类别
 
 ## 目录结构
 

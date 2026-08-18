@@ -79,7 +79,7 @@ export default function Navbar({ setupUrl }: { setupUrl: string }) {
           </a>
           <a
             href={setupUrl}
-            data-goatcounter-click="download-navbar"
+            data-track-event="download-navbar"
             className="hidden rounded-lg bg-[#1c1e54] px-4 py-2 text-[14px] font-semibold text-white shadow-[0_2px_6px_rgba(28,30,84,0.3)] transition-colors hover:bg-[#2a2d73] sm:block"
           >
             免费下载
@@ -129,7 +129,7 @@ export default function Navbar({ setupUrl }: { setupUrl: string }) {
           ))}
           <a
             href={setupUrl}
-            data-goatcounter-click="download-navbar-mobile"
+            data-track-event="download-navbar-mobile"
             className="mt-1 block rounded-xl bg-[#1c1e54] px-4 py-3 text-center text-[15px] font-semibold text-white"
           >
             免费下载
