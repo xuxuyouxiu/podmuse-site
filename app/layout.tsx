@@ -45,6 +45,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    other: {
+      'baidu-site-verification': 'codeva-dOLqI5mfv6',
+    },
+  },
   openGraph: {
     type: 'website',
     url: '/',
