@@ -149,6 +149,7 @@ export default function ExportStudio({
         >
           <a
             href={setupUrl}
+            data-goatcounter-click="download-main"
             className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#a855f7] px-8 py-4 text-base font-semibold text-white shadow-[0_4px_16px_rgba(124,58,237,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(124,58,237,0.45)]"
           >
             <DownloadIcon size={18} strokeWidth={2} className="transition-transform group-hover:translate-y-0.5" />
@@ -157,6 +158,7 @@ export default function ExportStudio({
           <p className="mt-3 text-xs text-ink-mute">Windows · 当前版本 v{version} · 个人使用永久免费 · 开源 · 数据 100% 本地</p>
           <a
             href={mirrorUrl}
+            data-goatcounter-click="download-mirror"
             className="mt-2 inline-block text-xs text-ink-mute underline decoration-slate-300 underline-offset-4 transition-colors hover:text-brand"
           >
             下载慢？点这里走国内加速通道

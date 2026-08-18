@@ -37,6 +37,19 @@ npm run dev
 | `npm run lint` | ESLint 检查 |
 | `npx tsc --noEmit` | TypeScript 类型检查 |
 
+## 数据统计（可选）
+
+使用 [GoatCounter](https://www.goatcounter.com/)（免费、隐私友好）。
+
+启用方式：在构建环境中设置环境变量：
+
+```bash
+NEXT_PUBLIC_GOATCOUNTER=https://your-name.goatcounter.com/count
+```
+
+- 未设置时不会加载任何统计脚本，不影响页面性能。
+- 下载按钮已埋点：`download-hero`、`download-navbar`、`download-navbar-mobile`、`download-main`、`download-mirror`、`download-footer`。
+
 ## 目录结构
 
 ```text

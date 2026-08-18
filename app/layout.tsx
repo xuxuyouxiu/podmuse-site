@@ -3,6 +3,7 @@ import { Inter, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 import SmoothScroll from '@/components/smooth-scroll'
 import BalatroBackground from '@/components/balatro-background'
+import Analytics from '@/components/analytics'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -127,6 +128,7 @@ export default function RootLayout({
           opacity={0.16}
         />
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

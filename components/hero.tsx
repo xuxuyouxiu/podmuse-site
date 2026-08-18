@@ -277,6 +277,7 @@ export default function Hero({ setupUrl, version }: { setupUrl: string; version:
           >
             <a
               href={setupUrl}
+              data-goatcounter-click="download-hero"
               className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-base font-medium text-white shadow-lg shadow-brand/25 transition-transform hover:scale-[1.03] active:scale-[0.98]"
             >
               <Download className="h-4 w-4" />
