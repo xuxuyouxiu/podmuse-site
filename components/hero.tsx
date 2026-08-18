@@ -240,40 +240,32 @@ export default function Hero({ setupUrl, version }: { setupUrl: string; version:
 
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 px-5 pb-14 pt-24 xl:grid-cols-2 xl:px-6 xl:pt-28">
         <motion.div style={{ y }}>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs text-ink-soft"
+          <div
+            className="hero-fade-up inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs text-ink-soft"
+            style={{ animationDelay: '0s' }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             全新上线 · 完全免费
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08 }}
-            className="mt-6 text-[34px] font-semibold leading-[1.06] tracking-tight sm:text-[44px] md:text-[68px]"
+          </div>
+          <h1
+            className="hero-fade-up mt-6 text-[34px] font-semibold leading-[1.06] tracking-tight sm:text-[44px] md:text-[68px]"
+            style={{ animationDelay: '0.08s' }}
           >
             把播客，
             <br />
             变成你的
             <br />
             <span className="font-display italic text-brand">第二大脑</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.16 }}
-            className="mt-5 max-w-md text-base leading-relaxed text-ink-soft sm:text-lg"
+          </h1>
+          <p
+            className="hero-fade-up mt-5 max-w-md text-base leading-relaxed text-ink-soft sm:text-lg"
+            style={{ animationDelay: '0.16s' }}
           >
             粘贴一条链接，AI 自动转写、提炼、结构化——让每一期节目都沉淀为可复用、可互链的知识资产。
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.24 }}
-            className="mt-7 flex flex-wrap items-center gap-3"
+          </p>
+          <div
+            className="hero-fade-up mt-7 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: '0.24s' }}
           >
             <a
               href={setupUrl}
@@ -290,29 +282,25 @@ export default function Hero({ setupUrl, version }: { setupUrl: string; version:
               看它怎么工作
               <ArrowDown className="h-3.5 w-3.5" />
             </a>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-9 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-mute"
+          </div>
+          <div
+            className="hero-fade-up mt-9 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-mute"
+            style={{ animationDelay: '0.4s' }}
           >
             <span>✓ 数据 100% 存本地</span>
             <span>✓ 支持主流播客平台</span>
             <span>✓ 免费开源</span>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* App 窗口（浮动 + 节点装饰，放大完整显示） */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative min-w-0"
+        <div
+          className="hero-fade-up relative min-w-0"
+          style={{ animationDelay: '0.3s' }}
         >
           <KnowledgeNodes />
           <WorkspaceShot version={version} />
-        </motion.div>
+        </div>
       </div>
     </section>
   )
