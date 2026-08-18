@@ -104,6 +104,16 @@ const jsonLd = {
   ],
 }
 
+const baiduAnalyticsSnippet = `
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?47c3d20d16483b897729f4ed49bc87fd";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+`
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -129,6 +139,7 @@ export default function RootLayout({
         />
         <SmoothScroll>{children}</SmoothScroll>
         <Analytics />
+        <script dangerouslySetInnerHTML={{ __html: baiduAnalyticsSnippet }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

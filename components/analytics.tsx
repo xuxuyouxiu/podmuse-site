@@ -3,24 +3,16 @@
 import { useEffect } from 'react'
 
 /**
- * 百度统计（Baidu Tongji）。
- * 官网统计脚本 + 下载按钮点击事件埋点。
+ * 百度统计事件埋点。
+ * 统计脚本本身由 app/layout.tsx 中的内联脚本加载，
+ * 这里只负责把下载按钮点击上报为 _trackEvent。
  */
-const BAIDU_SITE_ID = '47c3d20d16483b897729f4ed49bc87fd'
-
 type Hmt = Array<Array<string | number>>
 
 export default function Analytics() {
   useEffect(() => {
     const w = window as unknown as { _hmt?: Hmt }
     w._hmt = w._hmt || []
-
-    if (!document.querySelector('script[src^="https://hm.baidu.com/hm.js?"]')) {
-      const script = document.createElement('script')
-      script.async = true
-      script.src = `https://hm.baidu.com/hm.js?${BAIDU_SITE_ID}`
-      document.head.appendChild(script)
-    }
 
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null
@@ -33,10 +25,6 @@ export default function Analytics() {
 
     return () => {
       document.removeEventListener('click', handleClick)
-      const script = document.querySelector(
-        'script[src^="https://hm.baidu.com/hm.js?"]',
-      ) as HTMLScriptElement | null
-      if (script) document.head.removeChild(script)
     }
   }, [])
 
