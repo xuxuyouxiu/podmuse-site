@@ -1,7 +1,6 @@
 'use client'
 
 import GithubIcon from './github-icon'
-import { useLatestSetupUrl } from './latest-setup'
 
 interface FooterLink {
   label: string
@@ -37,8 +36,7 @@ const buildGroups = (setupUrl: string): { title: string; links: FooterLink[] }[]
   },
 ]
 
-export default function Footer() {
-  const { url: setupUrl } = useLatestSetupUrl()
+export default function Footer({ setupUrl }: { setupUrl: string }) {
   const groups = buildGroups(setupUrl)
 
   return (

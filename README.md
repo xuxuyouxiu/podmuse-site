@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PodMuse 官网
 
-## Getting Started
+PodMuse 官网：**把播客变成你的第二大脑**。
 
-First, run the development server:
+粘贴一条链接，AI 自动转写、提炼、结构化——让每一期节目都沉淀为可复用、可互链的知识资产。
+
+- 官网：<https://xuxuya66.top>
+- 产品仓库：<https://github.com/xuxuyouxiu/PodMuse>
+- 部署：GitHub Pages（静态导出，无后端）
+
+## 技术栈
+
+- Next.js 16（App Router）
+- React 19 + TypeScript
+- Tailwind CSS 4
+- GSAP + ScrollTrigger
+- Framer Motion
+- Lenis（平滑滚动）
+- OGL（全屏 WebGL 背景）
+
+## 本地开发
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 <http://localhost:3000>。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 常用脚本
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 命令 | 说明 |
+| --- | --- |
+| `npm run dev` | 启动开发服务器 |
+| `npm run build` | 生产构建（输出到 `out/`） |
+| `npm run start` | 预览生产构建 |
+| `npm run lint` | ESLint 检查 |
+| `npx tsc --noEmit` | TypeScript 类型检查 |
 
-## Learn More
+## 目录结构
 
-To learn more about Next.js, take a look at the following resources:
+```text
+app/            Next.js App Router（页面、全局布局）
+components/     页面组件与动效组件
+public/         静态资源（图标、分享图、二维码）
+docs-pm/        产品文档（PRD、功能设计、用户故事）
+.github/        GitHub Pages 部署工作流
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 部署
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+推送 `main` 分支后，GitHub Actions 会自动：
 
-## Deploy on Vercel
+1. 安装依赖
+2. 运行 lint 与 TypeScript 检查
+3. 构建静态站点
+4. 写入 `CNAME`
+5. 部署到 GitHub Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 说明
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 纯静态站点，无后端、无数据库。
+- 构建时通过 GitHub API 解析 GitHub Releases 中的最新版本，直接写入静态页面；另提供国内镜像加速通道。
+- 页面数据均为前端静态展示，应用本身数据 100% 存本地。

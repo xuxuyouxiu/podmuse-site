@@ -2,14 +2,20 @@
 
 import { motion } from 'framer-motion'
 import { Image as ImageIcon, FileText, Download as DownloadIcon } from 'lucide-react'
-import { useLatestSetupUrl } from './latest-setup'
 
 /**
  * Export Studio 输出台：一条内容从知识图谱流出，
  * 汇入笔记预览卡 → 从双出口（宣传图片 / PDF）发布/归档。
  */
-export default function ExportStudio() {
-  const { url: setupUrl, mirrorUrl } = useLatestSetupUrl()
+export default function ExportStudio({
+  setupUrl,
+  mirrorUrl,
+  version,
+}: {
+  setupUrl: string
+  mirrorUrl: string
+  version: string
+}) {
   return (
     <section id="download" className="flex min-h-screen snap-start flex-col justify-center border-t border-slate-100 py-20">
       <div className="mx-auto w-full max-w-6xl px-5 md:px-6">
@@ -17,7 +23,7 @@ export default function ExportStudio() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: '-80px' }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.55 }}
           className="mx-auto max-w-xl text-center"
         >
@@ -38,7 +44,7 @@ export default function ExportStudio() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false, margin: '-60px' }}
+            viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6 }}
             className="pointer-events-none absolute -top-10 left-1/2 h-10 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-brand/40 to-brand/70"
           >
@@ -50,7 +56,7 @@ export default function ExportStudio() {
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: '-60px' }}
+              viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.45 }}
               className="order-2 flex justify-center md:order-1"
             >
@@ -70,7 +76,7 @@ export default function ExportStudio() {
             <motion.div
               initial={{ opacity: 0, y: 44, scale: 0.96 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, margin: '-60px' }}
+              viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="order-1 md:order-2"
             >
@@ -115,7 +121,7 @@ export default function ExportStudio() {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: '-60px' }}
+              viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: 0.45 }}
               className="order-3 flex justify-center"
             >
@@ -137,7 +143,7 @@ export default function ExportStudio() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: '-60px' }}
+          viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, delay: 0.65 }}
           className="mt-16 text-center"
         >
@@ -148,7 +154,7 @@ export default function ExportStudio() {
             <DownloadIcon size={18} strokeWidth={2} className="transition-transform group-hover:translate-y-0.5" />
             免费下载 PodMuse
           </a>
-          <p className="mt-3 text-xs text-ink-mute">Windows · 个人使用永久免费 · 开源 · 数据 100% 本地</p>
+          <p className="mt-3 text-xs text-ink-mute">Windows · 当前版本 v{version} · 个人使用永久免费 · 开源 · 数据 100% 本地</p>
           <a
             href={mirrorUrl}
             className="mt-2 inline-block text-xs text-ink-mute underline decoration-slate-300 underline-offset-4 transition-colors hover:text-brand"

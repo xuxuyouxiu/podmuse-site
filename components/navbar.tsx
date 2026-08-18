@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import GithubIcon from './github-icon'
-import { useLatestSetupUrl } from './latest-setup'
 
 const links = [
   { label: '完整链路', href: '#workflow' },
@@ -11,10 +10,9 @@ const links = [
   { label: '下载', href: '#download' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ setupUrl }: { setupUrl: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { url: setupUrl } = useLatestSetupUrl()
 
   useEffect(() => {
     const onScroll = () => {
@@ -26,6 +24,15 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
 
   return (
     <header
@@ -79,7 +86,9 @@ export default function Navbar() {
           {/* 手机汉堡 */}
           <button
             type="button"
-            aria-label="菜单"
+            aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
             onClick={() => setMenuOpen(o => !o)}
             className="grid h-9 w-9 place-items-center rounded-lg text-ink md:hidden"
           >
@@ -103,7 +112,10 @@ export default function Navbar() {
 
       {/* 手机下拉菜单 */}
       {menuOpen && (
-        <div className="mx-auto mt-2 max-w-6xl rounded-2xl bg-white/95 p-3 shadow-[0_2px_8px_rgba(50,50,93,0.06),0_12px_28px_-8px_rgba(50,50,93,0.12)] md:hidden">
+        <div
+          id="mobile-menu"
+          className="mx-auto mt-2 max-w-6xl rounded-2xl bg-white/95 p-3 shadow-[0_2px_8px_rgba(50,50,93,0.06),0_12px_28px_-8px_rgba(50,50,93,0.12)] md:hidden"
+        >
           {links.map(l => (
             <a
               key={l.href}

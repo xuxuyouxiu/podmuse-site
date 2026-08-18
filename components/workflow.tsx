@@ -310,7 +310,7 @@ function Head() {
       <motion.p
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: '-60px' }}
+        viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="text-[11px] font-semibold uppercase tracking-[0.42em] text-brand/70"
       >

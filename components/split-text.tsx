@@ -66,7 +66,9 @@ const SplitText: React.FC<SplitTextProps> = ({
       if (el._rbsplitInstance) {
         try {
           el._rbsplitInstance.revert();
-        } catch (_) {}
+        } catch {
+          // ignore revert errors
+        }
         el._rbsplitInstance = undefined;
       }
 
@@ -110,7 +112,7 @@ const SplitText: React.FC<SplitTextProps> = ({
               scrollTrigger: {
                 trigger: el,
                 start,
-                once: false,
+                once: true,
                 toggleActions: 'play none none none',
                 fastScrollEnd: true,
                 anticipatePin: 0.4
@@ -131,7 +133,9 @@ const SplitText: React.FC<SplitTextProps> = ({
         });
         try {
           splitInstance.revert();
-        } catch (_) {}
+        } catch {
+          // ignore revert errors
+        }
         el._rbsplitInstance = undefined;
       };
     },
@@ -159,9 +163,26 @@ const SplitText: React.FC<SplitTextProps> = ({
       willChange: 'transform, opacity'
     };
     const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
-    const Tag = (tag || 'p') as React.ElementType;
 
-    return React.createElement(Tag, { ref, style, className: classes }, text);
+    switch (tag || 'p') {
+      case 'h1':
+        return <h1 ref={ref} style={style} className={classes}>{text}</h1>;
+      case 'h2':
+        return <h2 ref={ref} style={style} className={classes}>{text}</h2>;
+      case 'h3':
+        return <h3 ref={ref} style={style} className={classes}>{text}</h3>;
+      case 'h4':
+        return <h4 ref={ref} style={style} className={classes}>{text}</h4>;
+      case 'h5':
+        return <h5 ref={ref} style={style} className={classes}>{text}</h5>;
+      case 'h6':
+        return <h6 ref={ref} style={style} className={classes}>{text}</h6>;
+      case 'span':
+        return <span ref={ref} style={style} className={classes}>{text}</span>;
+      case 'p':
+      default:
+        return <p ref={ref} style={style} className={classes}>{text}</p>;
+    }
   };
 
   return renderTag();

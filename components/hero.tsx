@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Download, ArrowDown, BookMarked, LayoutDashboard, Rss, History, Network, Search, MessageCircle, Settings } from 'lucide-react'
-import { useLatestSetupUrl } from './latest-setup'
 
 /** 知识节点连线 SVG（Hero 背景装饰，轻） */
 function KnowledgeNodes() {
@@ -51,7 +50,7 @@ function KnowledgeNodes() {
 }
 
 /** 迷你工作台：1:1 模拟真实 PodMuse 界面（浅色主题，真实 tokens，放大版） */
-function WorkspaceShot() {
+function WorkspaceShot({ version }: { version: string }) {
   const sideItems = [
     { label: '笔记库', icon: BookMarked, active: false },
     { label: '工作台', icon: LayoutDashboard, active: true },
@@ -81,7 +80,7 @@ function WorkspaceShot() {
           <span className="h-3 w-3 rounded-full bg-amber-300" />
           <span className="h-3 w-3 rounded-full bg-green-300" />
           <span className="ml-3 text-[13px] text-ink-mute">PodMuse</span>
-          <span className="ml-auto text-[11px] text-ink-mute">v1.45.4</span>
+          <span className="ml-auto text-[11px] text-ink-mute">v{version}</span>
         </div>
         <div className="flex bg-[#fafafa]">
           {/* 侧边栏（真实 7 项 + 任务概览） */}
@@ -215,8 +214,7 @@ function WorkspaceShot() {
   )
 }
 
-export default function Hero() {
-  const { url: setupUrl } = useLatestSetupUrl()
+export default function Hero({ setupUrl, version }: { setupUrl: string; version: string }) {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -312,7 +310,7 @@ export default function Hero() {
           className="relative min-w-0"
         >
           <KnowledgeNodes />
-          <WorkspaceShot />
+          <WorkspaceShot version={version} />
         </motion.div>
       </div>
     </section>

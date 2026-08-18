@@ -18,14 +18,89 @@ const instrument = Instrument_Serif({
   display: 'swap',
 })
 
+const SITE_URL = 'https://xuxuya66.top'
+
 export const metadata: Metadata = {
-  title: 'PodMuse — 把播客变成你的第二大脑',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'PodMuse — 把播客变成你的第二大脑',
+    template: '%s | PodMuse',
+  },
   description:
     '粘贴一条链接，AI 自动转写、提炼、结构化。支持小宇宙、B站、喜马拉雅、抖音、YouTube。数据 100% 本地。',
+  applicationName: 'PodMuse',
+  authors: [{ name: 'PodMuse', url: 'https://github.com/xuxuyouxiu/PodMuse' }],
+  creator: 'PodMuse',
+  publisher: 'PodMuse',
+  keywords: ['播客笔记', 'AI 笔记', 'PodMuse', '播客转写', '知识管理', '本地笔记'],
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/icon-192.png',
     apple: '/apple-touch-icon.png',
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'PodMuse',
+    title: 'PodMuse — 把播客变成你的第二大脑',
+    description:
+      '粘贴一条链接，AI 自动转写、提炼、结构化。支持小宇宙、B站、喜马拉雅、抖音、YouTube。数据 100% 本地。',
+    locale: 'zh_CN',
+    images: [
+      {
+        url: '/share-card.png',
+        width: 1080,
+        height: 1080,
+        alt: 'PodMuse 分享卡',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PodMuse — 把播客变成你的第二大脑',
+    description:
+      '粘贴一条链接，AI 自动转写、提炼、结构化。支持小宇宙、B站、喜马拉雅、抖音、YouTube。数据 100% 本地。',
+    images: ['/share-card.png'],
+  },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'PodMuse',
+      url: SITE_URL,
+      description:
+        '把播客变成你的第二大脑。粘贴一条链接，AI 自动转写、提炼、结构化。',
+      inLanguage: 'zh-CN',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'PodMuse',
+      url: SITE_URL,
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Windows',
+      description:
+        '粘贴一条链接，AI 自动转写、提炼、结构化。支持小宇宙、B站、喜马拉雅、抖音、YouTube。数据 100% 本地。',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'CNY',
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'PodMuse',
+        url: 'https://github.com/xuxuyouxiu/PodMuse',
+      },
+    },
+  ],
 }
 
 export default function RootLayout({
@@ -52,6 +127,10 @@ export default function RootLayout({
           opacity={0.16}
         />
         <SmoothScroll>{children}</SmoothScroll>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   )

@@ -24,6 +24,8 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run lint
+      - run: npx tsc --noEmit
       - run: npm run build
       - name: 生成 CNAME（自定义域名）
         run: echo 'xuxuya66.top' > out/CNAME
