@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   verification: {
     other: {
-      'baidu-site-verification': 'codeva-dOLqI5mfv6',
+      'baidu-site-verification': 'codeva-dOLql5mfv6',
     },
   },
   openGraph: {
