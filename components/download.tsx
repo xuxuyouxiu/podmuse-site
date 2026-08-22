@@ -161,7 +161,7 @@ export default function ExportStudio({
             data-track-event="download-mirror"
             className="mt-2 inline-block text-xs text-ink-mute underline decoration-slate-300 underline-offset-4 transition-colors hover:text-brand"
           >
-            下载慢？点这里走国内加速通道
+            国内下载慢？点这里走 GitHub 通道（海外用户/挂 VPN 适用）
           </a>
         </motion.div>
       </div>
